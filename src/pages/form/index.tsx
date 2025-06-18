@@ -1,15 +1,21 @@
-import React, {useState} from 'react';
+import React, {useEffect, useRef, useState} from 'react';
 import cx from 'classnames';
+import { useSearchParams} from 'react-router-dom';
 import FormAnimation from './FormAnimation';
 import NumberTicker from './NumberTicker';
 import Modal from '../../components/Modal';
 import './index.less';
 import {Privacy} from './constant.ts';
+import {postCallback} from './service.ts';
+import toast from '../../components/Toast';
 
 const FormPage: React.FC = () => {
+  const [searchParams] = useSearchParams();
   const [formShown, setFormShown] = useState(false);
   const [checked, setChecked] = useState(true);
   const [modalVisible, setModalVisible] = useState(false);
+  const inputRef = useRef<HTMLInputElement>(null);
+  const wyCallbackId = searchParams.get('wyCallbackId') || '';
 
   const handleAnimationFinish = () => {
     setFormShown(true);
@@ -24,6 +30,36 @@ const FormPage: React.FC = () => {
     setModalVisible(false);
   };
 
+  const handleSubmit = () => {
+    const phoneNumber = inputRef.current?.value.trim();
+
+    postCallback(wyCallbackId, 1002)
+    if (!phoneNumber || !/^1\d{10}$/.test(phoneNumber)) {
+      toast('请输入正确的手机号码');
+      return;
+    }
+    if (!checked) {
+      toast('请同意个人信息授权与保护声明');
+      return;
+    }
+
+    const targetUrl = searchParams.get('targetUrl') || '';
+
+    if (targetUrl) {
+      const url = new URL(targetUrl);
+
+      url.searchParams.set('phone', btoa(phoneNumber));
+      url.searchParams.set('wyCallbackId', wyCallbackId);
+
+      window.open(url.toString(), '_blank');
+      postCallback(wyCallbackId, 1003);
+    }
+  }
+
+  useEffect(() => {
+    postCallback(wyCallbackId, 1001);
+  }, []);
+
   return (
     <>
       <FormAnimation onFinish={handleAnimationFinish} />
@@ -36,9 +72,9 @@ const FormPage: React.FC = () => {
               </div>
             </div>
             <div className={'form-input'}>
-              <input type="tel" placeholder="请输入您的手机号码" maxLength={11}/>
+              <input ref={inputRef} type="tel" placeholder="请输入您的手机号码" maxLength={11}/>
             </div>
-            <div className={'form-btn'}/>
+            <div className={'form-btn'} onClick={handleSubmit}/>
             <div className={'form-hand'}/>
             <div className={'form-checkbox'}>
               <span className={cx('form-checkbox-trigger', checked && 'form-checkbox-trigger--checked')}

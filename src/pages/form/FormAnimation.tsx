@@ -28,7 +28,7 @@ const FormAnimation: React.FC<FormAnimationProps> = ({ onFinish }) => {
         onFinish();
       }
     }, 7000);
-  }, [onFinish]);
+  }, []);
 
   return (
     <div className="anime">
