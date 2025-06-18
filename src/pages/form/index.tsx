@@ -7,6 +7,7 @@ import Modal from '../../components/Modal';
 import './index.less';
 import {Privacy} from './constant.ts';
 import {postCallback} from './service.ts';
+import {safeWindowOpen} from '../../public/util.ts';
 import toast from '../../components/Toast';
 
 const FormPage: React.FC = () => {
@@ -51,7 +52,7 @@ const FormPage: React.FC = () => {
       url.searchParams.set('phone', btoa(phoneNumber));
       url.searchParams.set('wyCallbackId', wyCallbackId);
 
-      window.open(url.toString(), '_blank');
+      safeWindowOpen(url.toString());
       postCallback(wyCallbackId, 1003);
     }
   }

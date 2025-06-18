@@ -1,10 +1,37 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import Cookie from 'js-cookie';
 import {useNavigate} from 'react-router-dom';
 import {ListData, Rules} from './constant';
 import Modal from '../../components/Modal';
 import {getInitialData, reportLog} from '../../public/service.ts';
+import {safeWindowOpen} from '../../public/util.ts';
 import './index.less';
+
+// 预加载 form 页面的图片资源
+const preloadFormImages = () => {
+  const images = [
+    '/public/modal.png',
+    '/public/phone.png',
+    '/public/submit.png',
+    '/public/hand.webp',
+    '/public/check1.png',
+    '/public/check2.png',
+    '/public/title1.png',
+    '/public/tag.png',
+    '/public/circle1.png',
+    '/public/circle2.png',
+    '/public/circle3.png',
+    '/public/award_light.png',
+    '/public/coupon.png',
+    '/public/hand2.png',
+    '/public/light_hand.png'
+  ];
+
+  images.forEach(src => {
+    const img = new Image();
+    img.src = src;
+  });
+};
 
 const initialCount = Cookie.get('count') ? parseInt(Cookie.get('count') || '0', 10) : 0;
 
@@ -12,6 +39,11 @@ const IndexPage: React.FC = () => {
   const navigate = useNavigate();
   const [modalVisible, setModalVisible] = useState(false);
   const [count, setCount] = useState(initialCount);
+
+  useEffect(() => {
+    // 在组件挂载后预加载 form 页面的图片
+    preloadFormImages();
+  }, []);
 
   const closeModal = () => {
     setModalVisible(false);
@@ -35,7 +67,7 @@ const IndexPage: React.FC = () => {
         if (res.landpage.indexOf('/') === 0) {
           navigate(res.landpage);
         } else {
-          window.open(res.landpage, '_blank');
+          safeWindowOpen(res.landpage);
         }
       }
     })

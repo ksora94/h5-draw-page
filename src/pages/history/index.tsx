@@ -2,6 +2,7 @@ import React, {useEffect, useState} from 'react';
 import {useNavigate} from 'react-router-dom';
 import './index.less';
 import {fetchHistory} from '../../public/service.ts';
+import {safeWindowOpen} from '../../public/util.ts';
 
 const HistoryPage: React.FC = () => {
   const navigate = useNavigate();
@@ -15,7 +16,7 @@ const HistoryPage: React.FC = () => {
     if (item.landpage.indexOf('/') === 0) {
       navigate(item.landpage);
     } else {
-      window.open(item.landpage, '_blank');
+      safeWindowOpen(item.landpage)
     }
   }
 
