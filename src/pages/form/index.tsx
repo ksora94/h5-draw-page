@@ -1,7 +1,24 @@
-import React from 'react';
+import React, { useEffect, useRef } from 'react';
+import confetti from 'canvas-confetti';
 import './index.less';
 
 const FormPage: React.FC = () => {
+  const confettiRef = useRef<HTMLCanvasElement>(null);
+
+  useEffect(() => {
+    if (confettiRef.current) {
+      const myConfetti = confetti.create(confettiRef.current, {
+        resize: true
+      });
+
+      myConfetti({
+        particleCount: 100,
+        spread: 70,
+        origin: { x: 0.5, y: 1.0 }, // 底部中间
+        shapes: ['square', 'circle']
+      });
+    }
+  }, []);
 
   return (
     <div className="result">
@@ -24,6 +41,7 @@ const FormPage: React.FC = () => {
         <div className={'result-hand'}>
           <div className={'result-hand-light'}/>
           <div className={'result-hand-main'}/>
+          <canvas className={'result-confetti'} ref={confettiRef}/>
         </div>
       </div>
     </div>
