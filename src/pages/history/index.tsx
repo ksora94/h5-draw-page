@@ -1,14 +1,29 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import { useNavigate } from 'react-router-dom';
-import { awardList } from './constant';
 import './index.less';
+import {fetchHistory} from '../../public/service.ts';
 
 const HistoryPage: React.FC = () => {
   const navigate = useNavigate();
+  const [awardList, setAwardList] = useState<any[]>([]);
 
   const goBack = () => {
     navigate('/');
   };
+
+  const handleClick = (item: any) => {
+    if (item.landpage.indexOf('/') === 0) {
+      navigate(item.landpage);
+    } else {
+      window.open(item.landpage, '_blank');
+    }
+  }
+
+  useEffect(() => {
+    fetchHistory().then(res => {
+      setAwardList(res);
+    });
+  }, []);
 
   return (
     <div className="history-page">
@@ -19,21 +34,13 @@ const HistoryPage: React.FC = () => {
 
       <div className="history-list">
         {awardList.map((item, index) => (
-          <div className="history-item" key={index}>
+          <div className="history-item" key={index} onClick={() => handleClick(item)}>
             <div className="history-item-left">
-              {item.image ? (
-                <img className="history-item-image" src={item.image} alt={item.name} />
-              ) : (
-                <div className="history-item-placeholder">
-                  <img src="/public/award_light.png" alt="奖品" />
-                </div>
-              )}
+              <img className="history-item-image" src={item.creative.mainImage} alt={item.creative.title} />
             </div>
             <div className="history-item-right">
-              <div className="history-item-name">{item.name}</div>
-              <div className="history-item-expire">有效期至：{item.expireDate}</div>
-              {item.status === 'used' && <div className="history-item-tag used">已使用</div>}
-              {item.status === 'expired' && <div className="history-item-tag expired">已过期</div>}
+              <div className="history-item-name">{item.creative.title}</div>
+              <div className="history-item-expire">{item.creative.subtitle}</div>
             </div>
           </div>
         ))}

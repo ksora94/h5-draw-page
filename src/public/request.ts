@@ -12,7 +12,7 @@ interface RequestOptions {
 
 // 创建axios实例
 const axiosInstance = axios.create({
-  baseURL: import.meta.env.VITE_API_BASE_URL || '', // 从环境变量中获取基础URL
+  baseURL: import.meta.env.VITE_API_BASE_URL || 'https://engine.pingping2022.com/', // 从环境变量中获取基础URL
   timeout: 15000, // 超时时间15秒
   headers: {
     'Content-Type': 'application/json',
@@ -60,29 +60,7 @@ axiosInstance.interceptors.response.use(
     // 处理HTTP错误状态
     if (error.response) {
       const { status } = error.response;
-      let message = '';
-
-      switch (status) {
-        case 400:
-          message = '请求错误';
-          break;
-        case 401:
-          message = '未授权，请登录';
-          // 可以在这里执行登出操作
-          localStorage.removeItem('token');
-          break;
-        case 403:
-          message = '拒绝访问';
-          break;
-        case 404:
-          message = '请求地址不存在';
-          break;
-        case 500:
-          message = '服务器内部错误';
-          break;
-        default:
-          message = `连接错误 ${status}`;
-      }
+      let message = `连接错误 ${status}`;
 
       console.error(`HTTP错误: ${message}`);
     } else if (error.request) {

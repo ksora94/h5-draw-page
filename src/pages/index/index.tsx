@@ -3,6 +3,7 @@ import './index.less';
 import {useNavigate} from 'react-router-dom';
 import {ListData, Rules} from './constant';
 import Modal from '../../components/Modal';
+import {getInitialData, reportLog} from '../../public/service.ts';
 
 
 
@@ -15,7 +16,18 @@ const IndexPage: React.FC = () => {
   };
 
   const handleDraw = () => {
-    navigate('/form');
+    reportLog('ACTIVITY_PLAY')
+    getInitialData().then(res => {
+      if (res) {
+        reportLog('ADVERT_SHOW', res.id);
+        reportLog('ADVERT_CLICK', res.id);
+        if (res.landpage.indexOf('/') === 0) {
+          navigate(res.landpage);
+        } else {
+          window.open(res.landpage, '_blank');
+        }
+      }
+    })
   };
 
   const goToHistory = () => {
