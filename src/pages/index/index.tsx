@@ -18,6 +18,10 @@ const IndexPage: React.FC = () => {
     navigate('/form');
   };
 
+  const goToHistory = () => {
+    navigate('/history');
+  };
+
   return (
     <div className="index">
       <div className={'index-btn'} onClick={handleDraw}/>
@@ -34,7 +38,7 @@ const IndexPage: React.FC = () => {
         规则
       </div>
 
-      <div className={'index-history'}/>
+      <div className={'index-history'} onClick={goToHistory}/>
 
       <div className={'index-list'}>
         <div className={'index-list-box'}>
@@ -65,4 +69,3 @@ const IndexPage: React.FC = () => {
 };
 
 export default IndexPage;
-

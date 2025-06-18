@@ -1,6 +1,7 @@
 .index {
   min-height: 100vh;
   background: url('/public/bg.webp') no-repeat center top / 100% auto;
+  overflow: auto;
   &-btn {
     @keyframes btnInit {
       0%,to {
@@ -73,9 +74,10 @@
     height: 2rem;
     top: 16.725rem;
     left: 10.25rem;
-    background: url(//cdn.hzyuejie.com/dist/welfareAT02/private/T/T203/images/water.png?25ea52b4556e724=) no-repeat 50%;
+    background: url(/public/water.png) no-repeat 50%;
     background-size: cover;
     animation: waterdrop .5s steps(3) infinite, circleScale .5s linear infinite;
+    pointer-events: none;
   }
 
   &-count {
