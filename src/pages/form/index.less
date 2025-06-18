@@ -1,343 +1,160 @@
-@keyframes title_hide {
-  0% {
-    opacity: 1;
-  }
-  100% {
-    opacity: 0;
-  }
-}
-
-.result {
-  min-height: 100vh;
-  background-color: #000;
-
-  &-title {
-    @keyframes main_show {
-      0% {
-        opacity: 0;
-        transform: scale(.3);
-      }
-
-      100% {
-        opacity: 1;
-        transform: scale(1);
-      }
-    }
-    width: 18.75rem;
-    height: 3.5rem;
-    background-image: url(/public/title1.png);
-    background-repeat: no-repeat;
-    background-size: 100% 100%;
-    position: absolute;
-    top: 3.1rem;
-    left: auto;
-    opacity: 0;
-    -webkit-animation: main_show .5s linear .5s forwards, title_hide .5s linear 3s forwards;
-    animation: main_show .5s linear .5s forwards, title_hide .5s linear 3s forwards;
-  }
-
-  &-seal {
-    position: absolute;
-    top: 2.975rem;
-    left: auto;
-    z-index: 100;
-
-    &-item {
-      @keyframes seal_show {
-        0% {
-          opacity: 0;
-          transform: scale(2);
-        }
-        100% {
-          opacity: 1;
-          transform: scale(1);
-        }
-      }
-      @keyframes seal_hide1 {
-        0% {
-          opacity: 1;
-          transform: translate(0);
-        }
-        50% {
-          opacity: 1;
-          transform: translate(6.25rem, 8.3rem);
-        }
-        100% {
-          opacity: 0;
-          transform: translate(6.25rem, 8.3rem);
-        }
-      }
-      @keyframes seal_hide2 {
-        0% {
-          opacity: 1;
-          transform: translate(0);
-        }
-        50% {
-          opacity: 1;
-          transform: translateY(8.3rem);
-        }
-        100% {
-          opacity: 0;
-          transform: translateY(8.3rem);
-        }
-      }
-      @keyframes seal_hide3 {
-        0% {
-          opacity: 1;
-          transform: translate(0);
-        }
-        50% {
-          opacity: 1;
-          transform: translate(-6.25rem, 8.3rem);
-        }
-        100% {
-          opacity: 0;
-          transform: translate(-6.25rem, 8.3rem);
-        }
-      }
-      position: absolute;
-      top: 0;
-      left: auto;
-      width: 6.25rem;
-      height: 6.25rem;
-      background-image: url(/public/tag.png);
-      background-size: 6.25rem, 6.25rem;
-      background-repeat: no-repeat;
-      overflow: hidden;
+.form {
+  @keyframes popupScale {
+    0% {
+      transform: scale(.4);
       opacity: 0;
-
-      &--1 {
-        background-position: 0 0;
-        -webkit-animation: seal_show .2s cubic-bezier(.66, .15, .83, .41) 4s forwards, seal_hide1 .5s linear 5.7s forwards;
-        animation: seal_show .2s cubic-bezier(.66, .15, .83, .41) 4s forwards, seal_hide1 .5s linear 5.7s forwards;
-      }
-
-      &--2 {
-        left: 6.25rem;
-        background-position: 0 -6.25rem;
-        -webkit-animation: seal_show .2s cubic-bezier(.66, .15, .83, .41) 4.35s forwards, seal_hide2 .5s linear 5.7s forwards;
-        animation: seal_show .2s cubic-bezier(.66, .15, .83, .41) 4.35s forwards, seal_hide2 .5s linear 5.7s forwards;
-      }
-
-      &--3 {
-        left: 12.5rem;
-        background-position: 0 -12.5rem;
-        -webkit-animation: seal_show .2s cubic-bezier(.66, .15, .83, .41) 4.7s forwards, seal_hide3 .5s linear 5.7s forwards;
-        animation: seal_show .2s cubic-bezier(.66, .15, .83, .41) 4.7s forwards, seal_hide3 .5s linear 5.7s forwards;
-      }
+    }
+    40% {
+      transform: scale(1.05);
+      opacity: 1;
+    }
+    55% {
+      transform: scale(.95);
+      opacity: 1;
+    }
+    70% {
+      transform: scale(1);
+      opacity: 1;
+    }
+    85% {
+      transform: scale(.98);
+      opacity: 1;
+    }
+    100% {
+      transform: scale(1);
+      opacity: 1;
     }
   }
+  position: absolute;
+  top: 0;
+  z-index: 999;
+  width: 100vw;
+  height: 37.4rem;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  background-image: url(/public/modal.png);
+  animation: popupScale .7s linear forwards;
 
-  &-scene--1 {
-    @keyframes main_show {
-      0% {
-        opacity: 0;
-        transform: scale(.3);
-      }
-
-      100% {
-        opacity: 1;
-        transform: scale(1);
-      }
-    }
+  &-number {
     position: absolute;
-    top: 0;
-    left: auto;
-    width: 18.75rem;
-    height: 18.75rem;
-    z-index: 20;
-    -webkit-animation: main_show .5s linear .5s forwards;
-    animation: main_show .5s linear .5s forwards;
-    opacity: 0;
+    top: 10.65rem;
+    width: 100%;
+    height: 4.425rem;
+
+    &-text {
+      text-align: center;
+      margin-left: -.75rem;
+      color: #209e3d;
+      font-size: 5.275rem;
+      font-weight: 600;
+      font-family: PingFangSC-Semibold;
+    }
   }
 
-  &-light {
-    width: 18.75rem;
-    height: 18.75rem;
+  &-input {
+    position: absolute;
+    top: 18.225rem;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 13.75rem;
+    height: 2.4rem;
+    background: transparent;
 
-    &-item {
-      @keyframes light_hide {
-        0% {
-          opacity: 1;
-          transform: scale(1);
-        }
-        100% {
-          opacity: 0;
-          transform: scale(2);
-        }
-      }
-      width: 18.75rem;
-      height: 18.75rem;
+    &::before {
+      content: '';
       position: absolute;
-      top: 3.575rem;
-      left: auto;
       background-repeat: no-repeat;
       background-size: 100% 100%;
-      -webkit-animation: light_hide .5s linear 1s forwards;
-      animation: light_hide .5s linear 1s forwards;
+      background-image: url(/public/phone.png);
+      width: .55rem;
+      height: .8rem;
+      top: .775rem;
+      left: .9rem;
+    }
 
-      &--1 {
-        background-image: url(/public/circle1.png);
-      }
-
-      &--2 {
-        background-image: url(/public/circle2.png);
-      }
-
-      &--3 {
-        background-image: url(/public/circle3.png);
-        background-repeat: no-repeat;
-        background-size: 100% 100%;
-        -webkit-animation: title_hide .3s linear 3s forwards;
-        animation: title_hide .3s linear 3s forwards;
-      }
+    input {
+      width: 100%;
+      height: 100%;
+      border: 1px solid #f8dfb7;
+      border-radius: 25px;
+      outline: none;
+      padding-left: 1.875rem;
+      box-sizing: border-box;
+      font-size: .675rem;
     }
   }
 
-  &-coupon-bg {
-    @keyframes award_light {
+  &-btn {
+    @keyframes FormBtnScale {
       0% {
-        opacity: 0;
+        transform: scale(1);
+      }
+      50% {
+        transform: scale(.9);
       }
       100% {
-        opacity: 1;
+        transform: scale(1);
       }
     }
     position: absolute;
-    top: 3.5rem;
-    left: 0;
+    top: 21.075rem;
     width: 18.75rem;
-    height: 24.35rem;
-    background-image: url(/public/award_light.png);
+    height: 3.75rem;
+    background-image: url(/public/submit.png);
     background-repeat: no-repeat;
     background-size: 100% 100%;
-    opacity: 0;
-    -webkit-animation: award_light 1s linear 3s forwards;
-    animation: award_light 1s linear 3s forwards;
-  }
-
-  &-coupon {
-    @keyframes award_scale {
-      0% {
-        transform: scale(.8) translateY(0);
-      }
-      100% {
-        transform: scale(1) translateY(1.9rem);
-      }
-    }
-    @keyframes award_shark {
-      0%, 50%, 100% {
-        transform: rotate(0) translateY(1.9rem);
-        -webkit-transform-origin: center center;
-        transform-origin: center center;
-      }
-      25% {
-        transform: rotate(7deg) translateY(1.9rem);
-        -webkit-transform-origin: center center;
-        transform-origin: center center;
-      }
-      75% {
-        transform: rotate(-7deg) translateY(1.9rem);
-        -webkit-transform-origin: center center;
-        transform-origin: center center;
-      }
-    }
-    position: absolute;
-    top: 5.55rem;
-    left: 1.85rem;
-    width: 15rem;
-    height: 15rem;
-    background-image: url(/public/coupon.png);
-    background-repeat: no-repeat;
-    background-size: 100% 100%;
-    -webkit-animation: award_scale .2s linear 3s forwards, award_shark .3s linear 6.2s 2;
-    animation: award_scale .2s linear 3s forwards, award_shark .3s linear 6.2s 2;
-    transform: scale(.8);
+    -webkit-animation: FormBtnScale 1s ease .7s infinite;
+    animation: FormBtnScale 1s ease .7s infinite;
   }
 
   &-hand {
-    position: fixed;
-    bottom: 0;
-    width: 18.75rem;
-    height: 16.55rem;
-    z-index: 1;
-
-    &-light {
-      @keyframes hand_light_show {
-        0% {
-          transform: translateY(12.7rem);
-        }
-        100% {
-          transform: translateY(.25rem);
-        }
+    @keyframes handAni {
+      0%, 100% {
+        transform: translateX(0) translateY(0);
       }
-      @keyframes hand_light_hide {
-        0% {
-          transform: translateY(.25rem);
-        }
-        100% {
-          transform: translateY(12.7rem);
-        }
+      50% {
+        transform: translateX(.5rem) translateY(.5rem);
       }
-      position: absolute;
-      background-repeat: no-repeat;
-      background-size: 100% 100%;
-      bottom: 0;
-      width: 18.75rem;
-      height: 12.7rem;
-      background-image: url(//cdn.hzyuejie.com/dist/welfareAT02/private/C/Cz056R/img/light_hand.png);
-      -webkit-animation: hand_light_show .5s ease-in-out forwards, hand_light_hide 1s ease-in-out 2s forwards;
-      animation: hand_light_show .5s ease-in-out forwards, hand_light_hide 1s ease-in-out 2s forwards;
     }
-
-    &-main {
-      @keyframes hand_show {
-        0% {
-          transform: translateY(15rem);
-        }
-        100% {
-          transform: translateY(0);
-        }
-      }
-      @keyframes hand_move {
-        0%, 100% {
-          transform: rotate(0);
-          -webkit-transform-origin: center bottom;
-          transform-origin: center bottom;
-        }
-        50% {
-          transform: rotate(15deg);
-          -webkit-transform-origin: center bottom;
-          transform-origin: center bottom;
-        }
-      }
-      @keyframes hand_hide {
-        0% {
-          opacity: 1;
-          transform: translateY(0);
-        }
-        100% {
-          opacity: 0;
-          transform: translateY(15rem);
-        }
-      }
-      position: absolute;
-      background-repeat: no-repeat;
-      background-size: 100% 100%;
-      z-index: 20;
-      bottom: -3.5rem;
-      left: 5.7rem;
-      width: 6.2rem;
-      height: 16.55rem;
-      background-image: url(/public/hand2.png);
-      -webkit-animation: hand_show .5s ease-in-out forwards, hand_move .5s linear .5s infinite forwards, hand_hide .5s ease-in-out 2s forwards;
-      animation: hand_show .5s ease-in-out forwards, hand_move .5s linear .5s infinite forwards, hand_hide .5s ease-in-out 2s forwards;
-    }
-  }
-  &-confetti {
     position: absolute;
-    bottom: 0;
+    top: 23.075rem;
+    left: 12.75rem;
+    width: 4.45rem;
+    height: 4.45rem;
+    background-image: url(/public/hand.webp);
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    -webkit-animation: handAni 1s ease .7s infinite;
+    animation: handAni 1s ease .7s infinite;
+  }
+
+  &-checkbox {
+    position: absolute;
+    top: 26.775rem;
     width: 100%;
-    height: 16rem;
+    font-size: .55rem;
+    display: flex;
+    flex-wrap: wrap;
+    color: #85fba0;
+    margin-left: 1.95rem;
+    font-family: PingFang-SC-Regular;
+    &-trigger {
+      display: inline-block;
+      width: .95rem;
+      height: .95rem;
+      vertical-align: middle;
+      margin-right: .25rem;
+      background-image: url(/public/check2.png);
+      background-repeat: no-repeat;
+      background-size: cover;
+      margin-top: -.05rem;
+      &--checked {
+        background-image: url(/public/check1.png);
+      }
+    }
+    a {
+      color: #f5d06c;
+      font-size: .55rem;
+    }
   }
 }

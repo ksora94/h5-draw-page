@@ -1,50 +1,42 @@
-import React, { useEffect, useRef } from 'react';
-import confetti from 'canvas-confetti';
+import React, {useState} from 'react';
+import cx from 'classnames';
+import FormAnimation from './FormAnimation';
+import NumberTicker from './NumberTicker';
 import './index.less';
 
 const FormPage: React.FC = () => {
-  const confettiRef = useRef<HTMLCanvasElement>(null);
+  const [formShown, setFormShown] = useState(false);
+  const [checked, setChecked] = useState(true);
 
-  useEffect(() => {
-    if (confettiRef.current) {
-      const myConfetti = confetti.create(confettiRef.current, {
-        resize: true
-      });
-
-      myConfetti({
-        particleCount: 100,
-        spread: 70,
-        origin: { x: 0.5, y: 1.0 }, // 底部中间
-        shapes: ['square', 'circle']
-      });
-    }
-  }, []);
+  const handleAnimationFinish = () => {
+    setFormShown(true);
+  };
 
   return (
-    <div className="result">
-      <div className={'scene--1'}>
-        <div className={'result-title'}/>
-        <div className={'result-seal'}>
-          <div className={'result-seal-item result-seal-item--1'}></div>
-          <div className={'result-seal-item result-seal-item--2'}></div>
-          <div className={'result-seal-item result-seal-item--3'}></div>
-        </div>
-        <div className={'result-scene--1'}>
-          <div className={'result-light'}>
-            <div className={'result-light-item result-light-item--1'}/>
-            <div className={'result-light-item result-light-item--2'}/>
-            <div className={'result-light-item result-light-item--3'}/>
+    <>
+      <FormAnimation onFinish={handleAnimationFinish} />
+
+      {formShown && (
+          <div className={'form'}>
+            <div className={'form-number'}>
+              <div className={'form-number-text'}>
+                <NumberTicker end={200} duration={2000} />
+              </div>
+            </div>
+            <div className={'form-input'}>
+              <input type="tel" placeholder="请输入您的手机号码" maxLength={11}/>
+            </div>
+            <div className={'form-btn'}/>
+            <div className={'form-hand'}/>
+            <div className={'form-checkbox'}>
+              <span className={cx('form-checkbox-trigger', checked && 'form-checkbox-trigger--checked')}
+                onClick={() => setChecked(!checked)}/>
+              提交视为已阅读并同意
+              <a>《个人信息授权与保护声明》</a>
+            </div>
           </div>
-          <div className={'result-coupon-bg'}/>
-          <div className={'result-coupon'}/>
-        </div>
-        <div className={'result-hand'}>
-          <div className={'result-hand-light'}/>
-          <div className={'result-hand-main'}/>
-          <canvas className={'result-confetti'} ref={confettiRef}/>
-        </div>
-      </div>
-    </div>
+      )}
+    </>
   );
 };
 
