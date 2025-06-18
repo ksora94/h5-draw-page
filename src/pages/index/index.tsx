@@ -1,201 +1,40 @@
-import React from 'react';
+import React, {useState} from 'react';
 import './index.less';
+import {useNavigate} from 'react-router-dom';
+import {ListData, Rules} from './constant';
+import Modal from '../../components/Modal';
 
-const ListData = [
-  {
-    "name": "杨**",
-    "action": "领取幸运福袋"
-  },
-  {
-    "name": "李**",
-    "action": "领取幸运福袋"
-  },
-  {
-    "name": "姚**",
-    "action": "领取幸运福袋"
-  },
-  {
-    "name": "蔡**",
-    "action": "领取幸运福袋"
-  },
-  {
-    "name": "汪**",
-    "action": "领取幸运福袋"
-  },
-  {
-    "name": "姚**",
-    "action": "领取幸运福袋"
-  },
-  {
-    "name": "汪**",
-    "action": "领取幸运福袋"
-  },
-  {
-    "name": "杨**",
-    "action": "领取幸运福袋"
-  },
-  {
-    "name": "李**",
-    "action": "领取幸运福袋"
-  },
-  {
-    "name": "杨**",
-    "action": "领取幸运福袋"
-  },
-  {
-    "name": "李**",
-    "action": "领取幸运福袋"
-  },
-  {
-    "name": "姚**",
-    "action": "领取幸运福袋"
-  },
-  {
-    "name": "蔡**",
-    "action": "领取幸运福袋"
-  },
-  {
-    "name": "汪**",
-    "action": "领取幸运福袋"
-  },
-  {
-    "name": "杨**",
-    "action": "领取幸运福袋"
-  },
-  {
-    "name": "李**",
-    "action": "领取幸运福袋"
-  },
-  {
-    "name": "姚**",
-    "action": "领取幸运福袋"
-  },
-  {
-    "name": "蔡**",
-    "action": "领取幸运福袋"
-  },
-  {
-    "name": "汪**",
-    "action": "领取幸运福袋"
-  },
-  {
-    "name": "姚**",
-    "action": "领取幸运福袋"
-  },
-  {
-    "name": "汪**",
-    "action": "领取幸运福袋"
-  },
-  {
-    "name": "杨**",
-    "action": "领取幸运福袋"
-  },
-  {
-    "name": "李**",
-    "action": "领取幸运福袋"
-  },
-  {
-    "name": "杨**",
-    "action": "领取幸运福袋"
-  },
-  {
-    "name": "李**",
-    "action": "领取幸运福袋"
-  },
-  {
-    "name": "姚**",
-    "action": "领取幸运福袋"
-  },
-  {
-    "name": "蔡**",
-    "action": "领取幸运福袋"
-  },
-  {
-    "name": "汪**",
-    "action": "领取幸运福袋"
-  },
-  {
-    "name": "杨**",
-    "action": "领取幸运福袋"
-  },
-  {
-    "name": "李**",
-    "action": "领取幸运福袋"
-  },
-  {
-    "name": "姚**",
-    "action": "领取幸运福袋"
-  },
-  {
-    "name": "蔡**",
-    "action": "领取幸运福袋"
-  },
-  {
-    "name": "汪**",
-    "action": "领取幸运福袋"
-  },
-  {
-    "name": "姚**",
-    "action": "领取幸运福袋"
-  },
-  {
-    "name": "汪**",
-    "action": "领取幸运福袋"
-  },
-  {
-    "name": "杨**",
-    "action": "领取幸运福袋"
-  },
-  {
-    "name": "李**",
-    "action": "领取幸运福袋"
-  },
-  {
-    "name": "杨**",
-    "action": "领取幸运福袋"
-  },
-  {
-    "name": "李**",
-    "action": "领取幸运福袋"
-  },
-  {
-    "name": "姚**",
-    "action": "领取幸运福袋"
-  },
-  {
-    "name": "蔡**",
-    "action": "领取幸运福袋"
-  },
-  {
-    "name": "汪**",
-    "action": "领取幸运福袋"
-  }
-]
+
 
 const IndexPage: React.FC = () => {
+  const navigate = useNavigate();
+  const [modalVisible, setModalVisible] = useState(false);
 
-  // const handleDraw = () => {
-  //   // 模拟抽奖操作
-  //   setTimeout(() => {
-  //     navigate('/result');
-  //   }, 1000);
-  // };
+  const closeModal = () => {
+    setModalVisible(false);
+  };
+
+  const handleDraw = () => {
+    navigate('/form');
+  };
 
   return (
     <div className="index">
-      <div className={'index-btn'}/>
+      <div className={'index-btn'} onClick={handleDraw}/>
 
       <div className={'index-hand'}/>
 
-      <div className={'index-water'}></div>
+      <div className={'index-water'}/>
 
       <div className={'index-count'}>
         今日参与次数：6次
       </div>
 
-      <div className={'index-rule'}>
+      <div className={'index-rule'} onClick={() => setModalVisible(true)}>
         规则
       </div>
+
+      <div className={'index-history'}/>
 
       <div className={'index-list'}>
         <div className={'index-list-box'}>
@@ -211,8 +50,19 @@ const IndexPage: React.FC = () => {
           ))}
         </div>
       </div>
+
+      <Modal
+          visible={modalVisible}
+          onClose={closeModal}
+          title="活动规则"
+      >
+        <pre style={{fontSize: 14, lineHeight: 1.5, whiteSpace: 'break-spaces'}}>
+          {Rules}
+        </pre>
+      </Modal>
     </div>
   );
 };
 
 export default IndexPage;
+

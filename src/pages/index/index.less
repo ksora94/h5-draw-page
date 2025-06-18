@@ -44,6 +44,7 @@
     animation: hands .6s linear infinite;
     transform-origin: right bottom;
     z-index: 10;
+    pointer-events: none;
   }
 
   &-water {
@@ -135,5 +136,15 @@
     font-size: .7rem;
     color: #fff;
   }
+
+  &-history {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 3.35rem;
+    height: 3.35rem;
+    background: url(/public/history.webp) no-repeat center center/ 100% 100%;
+  }
 }
+
 
