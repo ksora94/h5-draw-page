@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>领取今日福利</title>
+		<script>
+      !function(i) {
+        var e = i.document
+            , o = e.documentElement
+            , t = "orientationchange"in i ? "orientationchange" : "resize"
+            , n = function e() {
+          var t = o.clientWidth || 375
+              , n = (t = 750 < t ? 750 : t) / 375 * 20 + "px";
+          i.remscale = t / 375,
+              o.style.fontSize = n;
+          var a = i.getComputedStyle(document.getElementsByTagName("html")[0]).fontSize;
+          parseFloat(n, 10),
+              parseFloat(a, 10);
+          return e
+        }();
+        o.setAttribute("data-dpr", i.navigator.appVersion.match(/iphone/gi) ? Math.min(i.devicePixelRatio || 1, 3) : 1),
+        e.addEventListener && (i.addEventListener(t, n, !1),
+            e.addEventListener("DOMContentLoaded", n, !1))
+      }(window)
+		</script>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>
