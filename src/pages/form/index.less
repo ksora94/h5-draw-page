@@ -25,15 +25,24 @@
       opacity: 1;
     }
   }
+  @keyframes BackgroundIn {
+    0% {
+        background-color: rgba(0,0,0,0);
+    }
+    100% {
+        background-color: rgba(0,0,0,1);
+    }
+  }
   position: absolute;
   top: 0;
   z-index: 999;
   width: 100vw;
-  height: 37.4rem;
+  height: 100vh;
+  background-color: rgba(0,0,0,0);
   background-repeat: no-repeat;
-  background-size: 100% 100%;
+  background-size: 100% auto;
   background-image: url(/public/modal.png);
-  animation: popupScale .7s linear forwards;
+  animation: popupScale .7s linear forwards, BackgroundIn .3s linear .7s forwards;;
 
   &-number {
     position: absolute;

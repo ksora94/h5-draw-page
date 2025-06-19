@@ -5,10 +5,10 @@ import FormAnimation from './FormAnimation';
 import NumberTicker from './NumberTicker';
 import Modal from '../../components/Modal';
 import './index.less';
-import {Privacy} from './constant.ts';
-import {postCallback} from './service.ts';
 import {safeWindowOpen} from '../../public/util.ts';
 import toast from '../../components/Toast';
+import {Privacy} from '../../public/constant.ts';
+import {postCallback} from '../../public/service.ts';
 
 const FormPage: React.FC = () => {
   const [searchParams] = useSearchParams();

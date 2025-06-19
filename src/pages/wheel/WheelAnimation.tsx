@@ -1,7 +1,7 @@
 import React, {useEffect, useRef, useState} from 'react';
 import cx from 'classnames';
-import './animate.less';
 import confetti from 'canvas-confetti';
+import './animate.less';
 
 interface WheelAnimationProps {
   onFinish?: () => void;
