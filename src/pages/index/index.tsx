@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react';
+import React, {useState, useEffect, useRef} from 'react';
 import Cookie from 'js-cookie';
 import {useNavigate} from 'react-router-dom';
 import {ListData, Rules} from './constant';
@@ -37,11 +37,13 @@ const initialCount = Cookie.get('count') ? parseInt(Cookie.get('count') || '0', 
 const IndexPage: React.FC = () => {
   const navigate = useNavigate();
   const [modalVisible, setModalVisible] = useState(false);
-  const [count, setCount] = useState(initialCount);
+  const [count, setCount] = useState(Math.max(8 - initialCount, 0)); // 初始值为 8 次减去已参与次数
+  const source = useRef<any>(null);
 
   useEffect(() => {
     // 在组件挂载后预加载 form 页面的图片
     preloadFormImages();
+    getInitialData().then(res => source.current = res);
   }, []);
 
   const closeModal = () => {
@@ -49,27 +51,27 @@ const IndexPage: React.FC = () => {
   };
 
   const handleDraw = () => {
-    reportLog('ACTIVITY_PLAY');
-    getInitialData().then(res => {
-      if (res) {
-        setCount(prevCount => {
-          const newCount = prevCount + 1;
-          // 第二天 0 点
-          const expires = new Date();
+    const data = source.current;
 
-          expires.setHours(24, 0, 0, 0); // 设置为第二天的 0 点
-          Cookie.set('count', newCount.toString(), { expires });
-          return newCount;
-        });
-        reportLog('ADVERT_SHOW', res.id);
-        reportLog('ADVERT_CLICK', res.id);
-        if (res.landpage.indexOf('/') === 0) {
-          navigate(res.landpage);
-        } else {
-          window.location.href = res.landpage;
-        }
+    reportLog('ACTIVITY_PLAY');
+    if (data && count > 0) {
+      setCount(prevCount => {
+        const newCount = prevCount - 1;
+        // 第二天 0 点
+        const expires = new Date();
+
+        expires.setHours(24, 0, 0, 0); // 设置为第二天的 0 点
+        Cookie.set('count', newCount.toString(), { expires });
+        return newCount;
+      });
+      reportLog('ADVERT_SHOW', data.id);
+      reportLog('ADVERT_CLICK', data.id);
+      if (data.landpage.indexOf('/') === 0) {
+        navigate(data.landpage);
+      } else {
+        window.location.href = data.landpage;
       }
-    })
+    }
   };
 
   const goToHistory = () => {
@@ -78,14 +80,23 @@ const IndexPage: React.FC = () => {
 
   return (
     <div className="index">
-      <div className={'index-btn'} onClick={handleDraw}/>
+      <div className={`index-btn ${count === 0 ? 'index-btn-disabled' : ''}`} onClick={handleDraw}/>
 
-      <div className={'index-hand'}/>
+      {count <= 3 && count > 0 && (
+          <div className={'index-btn-tooltip'}>
+            还有{count}次机会
+          </div>
+      )}
 
-      <div className={'index-water'}/>
+      {count > 0 && (
+          <>
+            <div className={'index-hand'}/>
+            <div className={'index-water'}/>
+          </>
+      )}
 
       <div className={'index-count'}>
-        今日参与次数：{count}次
+        今日可参与次数：{count}次
       </div>
 
       <div className={'index-rule'} onClick={() => setModalVisible(true)}>
@@ -112,7 +123,7 @@ const IndexPage: React.FC = () => {
       <Modal
           visible={modalVisible}
           onClose={closeModal}
-          title="活动规则"
+          title="活��规则"
       >
         <pre style={{fontSize: 14, lineHeight: 1.5, whiteSpace: 'break-spaces'}}>
           {Rules}

@@ -22,6 +22,36 @@
     left: 6.45rem;
     animation: btnInit .6s linear infinite;
     transform-origin: center center;
+
+    &-disabled {
+      animation: none;
+      filter: grayscale(70%);
+    }
+
+    &-tooltip {
+      position: absolute;
+      top: 14rem;
+      left: 50%;
+      transform: translateX(-50%);
+      color: #fff;
+      background-color: #f4b20a;
+      padding: 0.3rem 0.6rem;
+      border-radius: 0.3rem;
+      font-size: 0.7rem;
+      white-space: nowrap;
+      z-index: 20;
+
+      &:after {
+        content: "";
+        position: absolute;
+        bottom: -0.4rem;
+        left: 50%;
+        transform: translateX(-50%);
+        border-width: 0.4rem 0.4rem 0;
+        border-style: solid;
+        border-color: #f4b20a transparent transparent;
+      }
+    }
   }
 
   &-hand {
@@ -148,5 +178,3 @@
     background: url(/public/history.webp) no-repeat center center/ 100% 100%;
   }
 }
-
-
