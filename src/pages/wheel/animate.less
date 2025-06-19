@@ -1,0 +1,463 @@
+.anime {
+  min-height: 100vh;
+  background-color: #000;
+
+  &-overlay {
+    @keyframes overlayHide {
+      0% {
+        opacity: 1;
+      }
+      100% {
+        opacity: 0;
+      }
+    }
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    min-height: 37.4rem;
+    min-width: 18.75rem;
+    background-color: rgba(0, 0, 0, .8);
+    z-index: 30;
+    -webkit-animation: overlayHide .5s linear .8s forwards;
+    animation: overlayHide .5s linear .8s forwards;
+
+    &-main {
+      @keyframes highHide {
+        0% {
+          opacity: 1;
+        }
+        50% {
+          opacity: .6;
+        }
+        100% {
+          opacity: 1;
+        }
+      }
+      animation: highHide 1s linear .3s forwards;
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 18.75rem;
+      height: 37.4rem;
+      background-image: url(/public/wheel_tick.webp);
+      background-repeat: no-repeat;
+      background-size: cover;
+    }
+  }
+
+  &-wheel {
+    @keyframes fadeIn {
+      0% {
+        opacity: 0;
+      }
+      100% {
+        opacity: 1;
+      }
+    }
+    top: 0;
+    left: 0;
+    position: relative;
+    width: 18.75rem;
+    min-height: 37.4rem;
+    box-sizing: border-box;
+    background-image: url(/public/wheel_main.webp);
+    background-repeat: no-repeat;
+    background-size: 18.75rem 37.4rem;
+    animation: fadeIn .4s linear forwards;
+
+    &-light {
+      @keyframes lightShow {
+        0% {
+          visibility: hidden;
+        }
+        50% {
+          visibility: visible;
+        }
+      }
+      animation: lightShow 1s steps(1) infinite forwards;
+      position: absolute;
+      top: 7.675rem;
+      left: 0;
+      width: 18.75rem;
+      height: 18.75rem;
+      background-image: url(/public/wheel_light.webp);
+      background-repeat: no-repeat;
+      background-size: 100% 100%;
+    }
+
+    &-main {
+      position: absolute;
+      top: 7.675rem;
+      left: 0;
+      width: 18.75rem;
+      height: 18.75rem;
+      background-image: url(/public/wheel_content.webp);
+      background-repeat: no-repeat;
+      background-size: 100% 100%;
+      &--rotate {
+        @keyframes wheelAniC {
+          0% {
+            transform: rotate(0deg);
+          }
+          100% {
+            transform: rotate(5turn);
+          }
+        }
+        animation: 2s cubic-bezier(0.07, 0.88, 0.2, 1.07) 0s 1 normal none running wheelAniC;
+      }
+    }
+
+    &-arr {
+      position: absolute;
+      top: 13.4rem;
+      left: 6.45rem;
+      width: 6rem;
+      height: 7rem;
+      background-image: url(/public/wheel_arr.webp);
+      background-repeat: no-repeat;
+      background-size: 100% 100%;
+    }
+
+    &-btn {
+      @keyframes btnScale {
+        0%, 100% {
+          transform: scale(1);
+        }
+        50% {
+          transform: scale(1.1);
+        }
+      }
+      background-image: url(/public/wheel_btn.webp);
+      background-position: 0px 0rem;
+      animation: btnScale 1.2s linear infinite forwards;
+      position: absolute;
+      z-index: 2;
+      top: 13.4rem;
+      left: 6.45rem;
+      width: 6rem;
+      height: 7rem;
+      background-repeat: no-repeat;
+      background-size: 6rem 14rem;
+    }
+
+    &-hand {
+      @keyframes handMove {
+        0%, 100% {
+          transform: translate(0);
+        }
+
+        50% {
+          transform: translate(.5rem, .5rem);
+        }
+      }
+      animation: handMove .8s linear infinite forwards;
+      background-image: url(/public/hand.webp);
+      display: block;
+      position: absolute;
+      top: 17rem;
+      left: 10.25rem;
+      width: 4.45rem;
+      height: 4.475rem;
+      background-repeat: no-repeat;
+      background-size: cover;
+    }
+
+    &-boom {
+      @keyframes boomMove {
+        0% {
+          opacity: 1;
+          background-position-x: 0;
+        }
+        16.66% {
+          background-position-x: -16.5rem;
+        }
+        33.33% {
+          background-position-x: -33rem;
+        }
+        66.66% {
+          background-position-x: -49.5rem;
+        }
+        83.33% {
+          background-position-x: -66rem;
+        }
+        100% {
+          background-position-x: -82.5rem;
+          opacity: 0;
+        }
+      }
+      position: absolute;
+      top: 4.5rem;
+      left: 50%;
+      width: 16.5rem;
+      height: 15.75rem;
+      background-image: url(//cdn.hzyuejie.com/dist/welfareAT02/private/C/Cz258P/img/boom.png);
+      background-repeat: no-repeat;
+      background-size: 82.5rem 15.75rem;
+      transform: translateX(-50%) scale(.7);
+      -webkit-animation: boomMove .3s steps(1) forwards;
+      animation: boomMove .3s steps(1) forwards;
+      background-position-y: -1rem;
+
+      &--2 {
+        animation-delay: .4s;
+      }
+    }
+  }
+
+  &-result {
+    position: absolute;
+    z-index: 3;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.8);
+
+    &-lamp {
+      width: 18.75rem;
+      background-repeat: no-repeat;
+      background-size: 100% 100%;
+      height: 7.5rem;
+      background-image: url(/public/lamp.webp);
+    }
+
+    &-light {
+      @keyframes lightRotate {
+        0% {
+          transform: rotate(0deg);
+        }
+        100% {
+          transform: rotate(360deg);
+        }
+      }
+      width: 18.75rem;
+      background-repeat: no-repeat;
+      background-size: cover;
+      height: 19rem;
+      position: absolute;
+      top: 3.75rem;
+      left: 0;
+      background-image: url(/public/wheel_light2.webp);
+      -webkit-animation: lightRotate 14s linear infinite;
+      animation: lightRotate 14s linear infinite;
+    }
+
+    &-stars {
+      @keyframes opacity {
+        0% {
+          opacity: 0;
+        }
+        100% {
+          opacity: 1;
+        }
+      }
+      width: 18.75rem;
+      height: 5.5rem;
+      position: absolute;
+      top: 7.375rem;
+      left: 0;
+
+      &::before {
+        content: '';
+        opacity: 0;
+        display: block;
+        width: 18.75rem;
+        height: 5.5rem;
+        background-repeat: no-repeat;
+        background-size: 100% 100%;
+        background-image: url(/public/wheel_star1.webp);
+        -webkit-animation: opacity .2s linear .4s forwards;
+        animation: opacity .2s linear .4s forwards;
+      }
+
+      &::after {
+        content: '';
+        opacity: 0;
+        display: block;
+        width: 18.75rem;
+        height: 5.5rem;
+        background-repeat: no-repeat;
+        background-size: 100% 100%;
+        background-image: url(/public/wheel_star2.webp);
+        -webkit-animation: opacity .2s linear .4s forwards;
+        animation: opacity .2s linear .4s forwards;
+      }
+    }
+
+    &-circle {
+      @keyframes lightScale {
+        0% {
+          opacity: 1;
+          transform: scale(.2);
+        }
+        60% {
+          opacity: 1;
+        }
+        100% {
+          opacity: 0;
+          transform: scale(1.8);
+        }
+      }
+      opacity: 0;
+      width: 18.75rem;
+      position: absolute;
+      left: 0;
+      background-repeat: no-repeat;
+      background-size: 100% 100%;
+      transform: scale(.2);
+      height: 19rem;
+      top: 3.75rem;
+      background-image: url(/public/wheel_light3.webp);
+      -webkit-animation: lightScale .5s linear .2s;
+      animation: lightScale .5s linear .2s;
+    }
+
+    @keyframes titleShow {
+      0% {
+        opacity: 0;
+        transform: scale(2);
+      }
+      100% {
+        opacity: 1;
+        transform: scale(1);
+      }
+    }
+
+    &-title {
+      height: 10rem;
+      top: 5rem;
+      opacity: 0;
+      width: 18.75rem;
+      position: absolute;
+      left: 0;
+      background-repeat: no-repeat;
+      background-size: 100% 100%;
+      background-image: url(/public/wheel_title.webp);
+      animation: titleShow .4s linear forwards;
+    }
+
+    &-subtitle {
+      animation: titleShow .4s linear forwards;
+      width: 18.75rem;
+      height: 10rem;
+      position: absolute;
+      top: 9.6rem;
+      left: 0;
+      background-image: url(/public/wheel_subtitle.webp);
+      background-repeat: no-repeat;
+      background-size: 100% 100%;
+      opacity: 0;
+    }
+
+    &-hands {
+      z-index: 2;
+      position: absolute;
+      top: 100%;
+      left: 0;
+      pointer-events: none;
+
+      @keyframes handsUp {
+        0% {
+          transform: translateY(11.5rem);
+        }
+        100% {
+          transform: translateY(0);
+        }
+      }
+
+      @keyframes handSwing {
+        0%, 100% {
+          transform: translateY(0) rotate(0deg);
+        }
+        25% {
+          transform: translateY(0) rotate(-10deg);
+        }
+        75% {
+          transform: translateY(0) rotate(10deg);
+        }
+      }
+
+      div {
+        width: 5.25rem;
+        height: 20rem;
+        transform-origin: bottom center;
+      }
+
+      div:nth-child(1) {
+        z-index: 1;
+        background-image: url(/public/wheel_hand1.webp);
+        background-repeat: no-repeat;
+        background-size: cover;
+        position: absolute;
+        top: -11.5rem;
+        left: .15rem;
+        transform: translateY(0);
+        animation: handsUp 0.3s linear forwards, handSwing .6s ease-in-out 0.3s infinite forwards;
+      }
+
+      div:nth-child(2) {
+        background-image: url(/public/wheel_hand2.webp);
+        background-repeat: no-repeat;
+        background-size: 100% 100%;
+        transform: translateY(0);
+        position: absolute;
+        top: -11.95rem;
+        left: 4.425rem;
+        width: 5.25rem;
+        height: 20rem;
+        -webkit-transform-origin: bottom center;
+        transform-origin: bottom center;
+        animation: handsUp 0.3s linear forwards, handSwing 1s ease-in-out 0.3s infinite forwards;
+      }
+
+      div:nth-child(3) {
+        z-index: 1;
+        background-image: url(/public/wheel_hand3.webp);
+        background-repeat: no-repeat;
+        background-size: 100% 100%;
+        transform: translateY(0);
+        position: absolute;
+        top: -11.725rem;
+        left: 9.1rem;
+        width: 5.25rem;
+        height: 20rem;
+        -webkit-transform-origin: bottom center;
+        transform-origin: bottom center;
+        animation: handsUp 0.3s linear forwards, handSwing .8s ease-in-out 0.3s infinite forwards;
+      }
+
+      div:nth-child(4) {
+        z-index: 1;
+        background-image: url(/public/wheel_hand4.webp);
+        background-repeat: no-repeat;
+        background-size: cover;
+        position: absolute;
+        top: -11.5rem;
+        left: 13.775rem;
+        width: 5.25rem;
+        height: 20rem;
+        transform: translateY(0);
+        -webkit-transform-origin: bottom center;
+        transform-origin: bottom center;
+        animation: handsUp 0.3s linear forwards, handSwing 1.2s ease-in-out 0.3s infinite forwards;
+      }
+    }
+  }
+
+  &-confetti {
+    position: absolute;
+    z-index: 4;
+    bottom: 0;
+    width: 100%;
+    height: 24rem;
+    pointer-events: none;
+  }
+}

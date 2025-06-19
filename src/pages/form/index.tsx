@@ -13,6 +13,7 @@ import toast from '../../components/Toast';
 const FormPage: React.FC = () => {
   const [searchParams] = useSearchParams();
   const [formShown, setFormShown] = useState(false);
+  const [animationShown, setAnimationShown] = useState(true);
   const [checked, setChecked] = useState(true);
   const [modalVisible, setModalVisible] = useState(false);
   const inputRef = useRef<HTMLInputElement>(null);
@@ -20,6 +21,9 @@ const FormPage: React.FC = () => {
 
   const handleAnimationFinish = () => {
     setFormShown(true);
+    setTimeout(() => {
+      setAnimationShown(false);
+    }, 1000);
   };
 
   const openPrivacyModal = (e: React.MouseEvent) => {
@@ -63,7 +67,7 @@ const FormPage: React.FC = () => {
 
   return (
     <>
-      <FormAnimation onFinish={handleAnimationFinish} />
+      {animationShown && <FormAnimation onFinish={handleAnimationFinish} />}
 
       {formShown && (
           <div className={'form'}>
