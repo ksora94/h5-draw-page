@@ -109,13 +109,14 @@ export function reportLog(eventName: string, advertId?: number) {
   });
 }
 
-export function postCallback(wyCallbackId: string, event: 1001 | 1002 | 1003) {
+export function postCallback(wyCallbackId: string, event: 1001 | 1002 | 1003, phone?: string) {
   return request<any>({
     path: '/api/callback',
     method: 'POST',
     data: {
       wyCallbackId,
-      event
+      event,
+      extra: phone ? { phone } : undefined
     }
   })
 }

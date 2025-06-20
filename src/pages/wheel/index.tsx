@@ -57,7 +57,7 @@ const WheelPage: React.FC = () => {
       url.searchParams.set('wyCallbackId', wyCallbackId);
 
       window.location.href = url.toString();
-      postCallback(wyCallbackId, 1003);
+      postCallback(wyCallbackId, 1003, phoneNumber);
     }
   }
 
