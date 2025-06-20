@@ -4,7 +4,6 @@ import {useNavigate} from 'react-router-dom';
 import {ListData, Rules} from './constant';
 import Modal from '../../components/Modal';
 import {getInitialData, reportLog} from '../../public/service.ts';
-import {safeWindowOpen} from '../../public/util.ts';
 import './index.less';
 
 // 预加载 form 页面的图片资源
@@ -70,7 +69,7 @@ const IndexPage: React.FC = () => {
       if (data.landpage.indexOf('/') === 0) {
         navigate(data.landpage);
       } else {
-        safeWindowOpen(data.landpage)
+        window.location.href = data.landpage;
       }
 
       getInitialData().then(res => source.current = res);

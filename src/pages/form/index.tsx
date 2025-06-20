@@ -5,7 +5,6 @@ import FormAnimation from './FormAnimation';
 import NumberTicker from './NumberTicker';
 import Modal from '../../components/Modal';
 import './index.less';
-import {safeWindowOpen} from '../../public/util.ts';
 import toast from '../../components/Toast';
 import {Privacy} from '../../public/constant.ts';
 import {postCallback} from '../../public/service.ts';
@@ -56,7 +55,7 @@ const FormPage: React.FC = () => {
       url.searchParams.set('phone', btoa(phoneNumber));
       url.searchParams.set('wyCallbackId', wyCallbackId);
 
-      safeWindowOpen(url.toString());
+      window.location.href = url.toString();
       postCallback(wyCallbackId, 1003);
     }
   }

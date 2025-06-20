@@ -4,7 +4,6 @@ import WheelAnimation from './WheelAnimation.tsx';
 import {useSearchParams} from 'react-router-dom';
 import {postCallback} from '../../public/service.ts';
 import toast from '../../components/Toast';
-import {safeWindowOpen} from '../../public/util.ts';
 import NumberTicker from '../form/NumberTicker.tsx';
 import {Privacy} from '../../public/constant.ts';
 import Modal from '../../components/Modal';
@@ -57,7 +56,7 @@ const WheelPage: React.FC = () => {
       url.searchParams.set('phone', btoa(phoneNumber));
       url.searchParams.set('wyCallbackId', wyCallbackId);
 
-      safeWindowOpen(url.toString());
+      window.location.href = url.toString();
       postCallback(wyCallbackId, 1003);
     }
   }
