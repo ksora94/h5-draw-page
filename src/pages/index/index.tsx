@@ -3,47 +3,26 @@ import Cookie from 'js-cookie';
 import {useNavigate} from 'react-router-dom';
 import {ListData, Rules} from './constant';
 import Modal from '../../components/Modal';
-import {getInitialData, reportLog} from '../../public/service.ts';
+import {getInitialData, reportLog} from '@/public/service.ts';
+import cst from '@/public/constant.ts';
 import './index.less';
 
-// 预加载 form 页面的图片资源
-const preloadFormImages = () => {
-  const images = [
-    '/public/modal.png',
-    '/public/phone.png',
-    '/public/submit.png',
-    '/public/hand.webp',
-    '/public/check1.png',
-    '/public/check2.png',
-    '/public/title1.png',
-    '/public/tag.png',
-    '/public/circle1.png',
-    '/public/circle2.png',
-    '/public/circle3.png',
-    '/public/award_light.png',
-    '/public/coupon.png',
-    '/public/hand2.png',
-    '/public/light_hand.png'
-  ];
-
-  images.forEach(src => {
-    const img = new Image();
-    img.src = src;
-  });
-};
 
 const initialCount = Cookie.get('count') ? parseInt(Cookie.get('count') || '0', 10) : 0;
 
 const IndexPage: React.FC = () => {
   const navigate = useNavigate();
   const [modalVisible, setModalVisible] = useState(false);
-  const [count, setCount] = useState(Math.max(8 - initialCount, 0)); // 初始值为 8 次减去已参与次数
+  const [count, setCount] = useState(Math.max(8 - initialCount, 0));
+  const [rule, setRule] = useState('')
   const source = useRef<any>(null);
 
   useEffect(() => {
     // 在组件挂载后预加载 form 页面的图片
-    preloadFormImages();
-    getInitialData().then(res => source.current = res);
+    getInitialData().then(res => {
+      source.current = res;
+      setRule(Rules(cst.Activity));
+    });
   }, []);
 
   const closeModal = () => {
@@ -125,10 +104,10 @@ const IndexPage: React.FC = () => {
       <Modal
           visible={modalVisible}
           onClose={closeModal}
-          title="活��规则"
+          title="活动规则"
       >
         <pre style={{fontSize: 14, lineHeight: 1.5, whiteSpace: 'break-spaces'}}>
-          {Rules}
+          {rule}
         </pre>
       </Modal>
     </div>

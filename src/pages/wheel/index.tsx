@@ -4,6 +4,7 @@ import {useSearchParams} from 'react-router-dom';
 import {postCallback} from '../../public/service.ts';
 import NumberTicker from '../form/NumberTicker.tsx';
 import FormComponent from '../../components/Form';
+import modal2Image from '@/assets/images/modal2.webp';
 
 
 const WheelPage: React.FC = () => {
@@ -31,7 +32,7 @@ const WheelPage: React.FC = () => {
           <FormComponent
             numberTickerComponent={<NumberTicker end={200} duration={2000} />}
             wyCallbackId={wyCallbackId}
-            backgroundImage="/public/modal2.webp"
+            backgroundImage={modal2Image}
             numberColor="#459BF5"
           />
         )}

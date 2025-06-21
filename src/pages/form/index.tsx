@@ -4,6 +4,7 @@ import FormAnimation from './FormAnimation';
 import NumberTicker from './NumberTicker';
 import FormComponent from '../../components/Form';
 import { postCallback } from '../../public/service.ts';
+import modalImage from '@/assets/images/modal.png';
 
 const FormPage: React.FC = () => {
   const [searchParams] = useSearchParams();
@@ -30,7 +31,7 @@ const FormPage: React.FC = () => {
         <FormComponent
           numberTickerComponent={<NumberTicker end={200} duration={2000} />}
           wyCallbackId={wyCallbackId}
-          backgroundImage="/public/modal.png"
+          backgroundImage={modalImage}
           numberColor="#209e3d"
         />
       )}

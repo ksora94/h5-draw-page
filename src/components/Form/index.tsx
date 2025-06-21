@@ -1,4 +1,4 @@
-import React, { useRef, useState } from 'react';
+import React, {useMemo, useRef, useState} from 'react';
 import cx from 'classnames';
 import { useSearchParams } from 'react-router-dom';
 import Modal from '../Modal';
@@ -29,6 +29,10 @@ const FormComponent: React.FC<FormComponentProps> = ({
   const [modalVisible, setModalVisible] = useState(false);
   const inputRef = useRef<HTMLInputElement>(null);
 
+  const privacy = useMemo(() => Privacy({
+    contact: searchParams.get('contact')
+  }), [searchParams])
+
   const formStyles = {
     backgroundImage: `url(${backgroundImage})`,
     ...customStyles
@@ -46,6 +50,7 @@ const FormComponent: React.FC<FormComponentProps> = ({
   const closePrivacyModal = () => {
     setModalVisible(false);
   };
+
 
   const handleSubmit = () => {
     const phoneNumber = inputRef.current?.value.trim();
@@ -101,7 +106,7 @@ const FormComponent: React.FC<FormComponentProps> = ({
         onClose={closePrivacyModal}
         title="个人信息授权与保护声明"
       >
-        <pre style={{fontSize: 14, lineHeight: 1.5, whiteSpace: 'break-spaces'}}>{Privacy}</pre>
+        <pre style={{fontSize: 14, lineHeight: 1.5, whiteSpace: 'break-spaces'}}>{privacy}</pre>
       </Modal>
     </>
   );

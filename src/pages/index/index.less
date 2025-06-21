@@ -1,6 +1,6 @@
 .index {
   min-height: 100vh;
-  background: url('/public/bg.jpg') no-repeat center top / 100% auto;
+  background: url('@/assets/images/bg.jpg') no-repeat center top / 100% auto;
   overflow: auto;
   &-btn {
     @keyframes btnInit {
@@ -13,7 +13,7 @@
       }
     }
     position: absolute;
-    background-image: url(/public/btn.webp);
+    background-image: url(@/assets/images/btn.webp);
     background-repeat: no-repeat;
     background-size: cover;
     width: 5.85rem;
@@ -65,7 +65,7 @@
       }
     }
     position: absolute;
-    background-image: url(/public/hand.webp);
+    background-image: url(@/assets/images/hand.webp);
     background-repeat: no-repeat;
     background-size: cover;
     width: 4.575rem;
@@ -104,7 +104,7 @@
     height: 2rem;
     top: 16.725rem;
     left: 10.25rem;
-    background: url(/public/water.png) no-repeat 50%;
+    background: url(@/assets/images/water.png) no-repeat 50%;
     background-size: cover;
     animation: waterdrop .5s steps(3) infinite, circleScale .5s linear infinite;
     pointer-events: none;
@@ -175,6 +175,6 @@
     left: 0;
     width: 3.35rem;
     height: 3.35rem;
-    background: url(/public/history.webp) no-repeat center center/ 100% 100%;
+    background: url(@/assets/images/history.webp) no-repeat center center/ 100% 100%;
   }
 }

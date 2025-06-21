@@ -1,3 +1,6 @@
+import couponImage from '@/assets/images/coupon.png';
+import tagImage from '@/assets/images/tag.png';
+
 export interface AwardItem {
   id: string;
   name: string;
@@ -12,7 +15,7 @@ export const awardList: AwardItem[] = [
     id: '1',
     name: '10元无门槛优惠券',
     expireDate: '2025-07-01',
-    image: '/public/coupon.png',
+    image: couponImage,
     status: 'valid'
   },
   {
@@ -25,7 +28,7 @@ export const awardList: AwardItem[] = [
     id: '3',
     name: '免费体验会员3天',
     expireDate: '2025-06-25',
-    image: '/public/tag.png',
+    image: tagImage,
     status: 'valid'
   },
   {

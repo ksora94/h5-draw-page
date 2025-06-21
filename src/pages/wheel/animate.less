@@ -47,7 +47,7 @@
       left: 0;
       width: 18.75rem;
       height: 37.4rem;
-      background-image: url(/public/wheel_tick.webp);
+      background-image: url(@/assets/images/wheel_tick.webp);
       background-repeat: no-repeat;
       background-size: cover;
     }
@@ -68,7 +68,7 @@
     width: 18.75rem;
     min-height: 37.4rem;
     box-sizing: border-box;
-    background-image: url(/public/wheel_main.webp);
+    background-image: url(@/assets/images/wheel_main.webp);
     background-repeat: no-repeat;
     background-size: 18.75rem 37.4rem;
     animation: fadeIn .4s linear forwards;
@@ -88,7 +88,7 @@
       left: 0;
       width: 18.75rem;
       height: 18.75rem;
-      background-image: url(/public/wheel_light.webp);
+      background-image: url(@/assets/images/wheel_light.webp);
       background-repeat: no-repeat;
       background-size: 100% 100%;
     }
@@ -99,7 +99,7 @@
       left: 0;
       width: 18.75rem;
       height: 18.75rem;
-      background-image: url(/public/wheel_content.webp);
+      background-image: url(@/assets/images/wheel_content.webp);
       background-repeat: no-repeat;
       background-size: 100% 100%;
       &--rotate {
@@ -121,7 +121,7 @@
       left: 6.45rem;
       width: 6rem;
       height: 7rem;
-      background-image: url(/public/wheel_arr.webp);
+      background-image: url(@/assets/images/wheel_arr.webp);
       background-repeat: no-repeat;
       background-size: 100% 100%;
     }
@@ -135,7 +135,7 @@
           transform: scale(1.1);
         }
       }
-      background-image: url(/public/wheel_btn.webp);
+      background-image: url(@/assets/images/wheel_btn.webp);
       background-position: 0px 0rem;
       animation: btnScale 1.2s linear infinite forwards;
       position: absolute;
@@ -159,15 +159,17 @@
         }
       }
       animation: handMove .8s linear infinite forwards;
-      background-image: url(/public/hand.webp);
+      background-image: url(@/assets/images/hand.webp);
       display: block;
       position: absolute;
       top: 17rem;
       left: 10.25rem;
       width: 4.45rem;
       height: 4.475rem;
+      z-index: 3;
       background-repeat: no-repeat;
       background-size: cover;
+      pointer-events: none;
     }
 
     &-boom {
@@ -226,7 +228,7 @@
       background-repeat: no-repeat;
       background-size: 100% 100%;
       height: 7.5rem;
-      background-image: url(/public/lamp.webp);
+      background-image: url(@/assets/images/lamp.webp);
     }
 
     &-light {
@@ -245,7 +247,7 @@
       position: absolute;
       top: 3.75rem;
       left: 0;
-      background-image: url(/public/wheel_light2.webp);
+      background-image: url(@/assets/images/wheel_light2.webp);
       -webkit-animation: lightRotate 14s linear infinite;
       animation: lightRotate 14s linear infinite;
     }
@@ -273,7 +275,7 @@
         height: 5.5rem;
         background-repeat: no-repeat;
         background-size: 100% 100%;
-        background-image: url(/public/wheel_star1.webp);
+        background-image: url(@/assets/images/wheel_star1.webp);
         -webkit-animation: opacity .2s linear .4s forwards;
         animation: opacity .2s linear .4s forwards;
       }
@@ -286,7 +288,7 @@
         height: 5.5rem;
         background-repeat: no-repeat;
         background-size: 100% 100%;
-        background-image: url(/public/wheel_star2.webp);
+        background-image: url(@/assets/images/wheel_star2.webp);
         -webkit-animation: opacity .2s linear .4s forwards;
         animation: opacity .2s linear .4s forwards;
       }
@@ -315,7 +317,7 @@
       transform: scale(.2);
       height: 19rem;
       top: 3.75rem;
-      background-image: url(/public/wheel_light3.webp);
+      background-image: url(@/assets/images/wheel_light3.webp);
       -webkit-animation: lightScale .5s linear .2s;
       animation: lightScale .5s linear .2s;
     }
@@ -340,7 +342,7 @@
       left: 0;
       background-repeat: no-repeat;
       background-size: 100% 100%;
-      background-image: url(/public/wheel_title.webp);
+      background-image: url(@/assets/images/wheel_title.webp);
       animation: titleShow .4s linear forwards;
     }
 
@@ -351,7 +353,7 @@
       position: absolute;
       top: 9.6rem;
       left: 0;
-      background-image: url(/public/wheel_subtitle.webp);
+      background-image: url(@/assets/images/wheel_subtitle.webp);
       background-repeat: no-repeat;
       background-size: 100% 100%;
       opacity: 0;
@@ -393,7 +395,7 @@
 
       div:nth-child(1) {
         z-index: 1;
-        background-image: url(/public/wheel_hand1.webp);
+        background-image: url(@/assets/images/wheel_hand1.webp);
         background-repeat: no-repeat;
         background-size: cover;
         position: absolute;
@@ -404,7 +406,7 @@
       }
 
       div:nth-child(2) {
-        background-image: url(/public/wheel_hand2.webp);
+        background-image: url(@/assets/images/wheel_hand2.webp);
         background-repeat: no-repeat;
         background-size: 100% 100%;
         transform: translateY(0);
@@ -420,7 +422,7 @@
 
       div:nth-child(3) {
         z-index: 1;
-        background-image: url(/public/wheel_hand3.webp);
+        background-image: url(@/assets/images/wheel_hand3.webp);
         background-repeat: no-repeat;
         background-size: 100% 100%;
         transform: translateY(0);
@@ -436,7 +438,7 @@
 
       div:nth-child(4) {
         z-index: 1;
-        background-image: url(/public/wheel_hand4.webp);
+        background-image: url(@/assets/images/wheel_hand4.webp);
         background-repeat: no-repeat;
         background-size: cover;
         position: absolute;

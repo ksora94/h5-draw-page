@@ -51,6 +51,7 @@ export function getInitialData() {
   }).then(res => {
     updateInfo(res.info);
 
+    Object.assign(cst.Activity, res.activity_info);
     if (res.adverts?.length) {
       // 缓存五分钟
       Cookie.set('adverts', JSON.stringify(res.adverts), { expires: 5 / (24 * 60) });
